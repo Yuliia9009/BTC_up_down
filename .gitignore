@@ -1,0 +1,31 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Node / JS
+node_modules/
+npm-debug.log*
+pnpm-lock.yaml
+yarn.lock
+
+# Hardhat / Solidity
+chain/artifacts/
+chain/cache/
+chain/typechain/
+chain/.env
+
+# Web (ASP.NET)
+web/bin/
+web/obj/
+
+# Generated contract config
+web/wwwroot/contractConfig.json
+
+# Bot
+bot/.env
+
+# Logs
+*.log
+
+# VS Code
+.vscode/

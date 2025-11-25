@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>BTC Up/Down — dApp</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.12.1/dist/ethers.umd.min.js"></script>
+</head>
+
+<body>
+    <main class="container">
+        <header class="row between">
+            <h1>BTC Up/Down — Prediction</h1>
+            <div class="row">
+                <button id="connectBtn">Подключить кошелёк</button>
+                <span id="acct" class="mono muted">—</span>
+            </div>
+        </header>
+
+        <section class="card">
+            <div>Контракт: <code id="contractAddr">—</code></div>
+            <div>Сеть: <span id="network">—</span></div>
+        </section>
+
+        <section class="grid">
+            <div class="card">
+                <h2>Текущий раунд <span id="rid" class="mono"></span></h2>
+                <div class="row wrap">
+                    <div>Фаза: <b id="phase">—</b></div>
+                    <div>До смены фазы: <b id="countdown">—</b></div>
+                    <button id="progressBtn" class="ghost">progress()</button>
+                </div>
+
+                <div class="kv">
+                    <div><span>Начальная цена</span><b id="priceLock">—</b></div>
+                    <div><span>Финальная цена</span><b id="priceSettle">—</b></div>
+                    <div><span>Ставки UP</span><b id="poolUp">0</b></div>
+                    <div><span>Ставки DOWN</span><b id="poolDown">0</b></div>
+                    <div><span>Доля UP</span><b id="shareUp">—</b></div>
+                    <div><span>Доля DOWN</span><b id="shareDown">—</b></div>
+                    <div><span>Банк всего</span><b id="bank">0</b></div>
+                    <div><span>Комиссия (1%)</span><b id="feeCalc">0</b></div>
+                    <div><span>Твой баланс</span><b id="balance">0</b></div>
+                </div>
+
+                <div class="row">
+                    <input id="depAmount" type="number" step="0.0001" placeholder="0.1 (ETH) депозит">
+                    <button id="depBtn">Пополнить</button>
+                </div>
+
+                <div class="row mt8">
+                    <input id="cashoutAmount" type="number" step="0.0001" placeholder="0.1 (ETH) вывод">
+                    <button id="cashoutBtn" class="ghost">Вывести</button>
+                    <button id="stopBtn" class="ghost">Стоп (вывести всё)</button>
+                </div>
+
+                <div class="row">
+                    <input id="amount" type="number" step="0.00002" placeholder="0.00002 (ETH)">
+                    <button id="betUp">Ставка UP</button>
+                    <button id="betDown">Ставка DOWN</button>
+                </div>
+
+                <div class="row mt8">
+                    <button id="claimBtn">Забрать выигрыш</button>
+                </div>
+
+                <p id="toast" class="muted"></p>
+            </div>
+
+            <aside class="card">
+                <h3>Админ</h3>
+                <div class="kv">
+                    <div><span>Владелец</span><b id="ownerShort">—</b></div>
+                    <div><span>Накопленная комиссия</span><b id="fees">0</b></div>
+                </div>
+                <button id="withdrawBtn">Вывести комиссию</button>
+                <hr />
+                <h3>Топ-10 победителей</h3>
+                <table id="winners">
+                    <thead>
+                        <tr>
+                            <th>Адрес</th>
+                            <th>Побед</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </aside>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

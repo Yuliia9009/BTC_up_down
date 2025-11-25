@@ -1,0 +1,16 @@
+{
+  "name": "btc-updown",
+  "private": true,
+  "scripts": {
+    "clean": "pkill -f hardhat || true && pkill -f dotnet || true && pkill -f node || true && rm -rf chain/cache chain/artifacts web/bin web/obj node_modules package-lock.json",
+    "chain:node": "cd chain && npx hardhat node",
+    "chain:deploy:local": "wait-on tcp:127.0.0.1:8545 && cd chain && npx hardhat run scripts/deploy.js --network localhost",
+    "web": "wait-on file:web/wwwroot/contractConfig.json && cd web && dotnet run",
+    "bot": "wait-on tcp:127.0.0.1:8545 file:web/wwwroot/contractConfig.json && cd bot && node bot.js",
+    "start:local": "npm run clean && npm install && concurrently --kill-others-on-fail \"npm run chain:node\" \"npm run chain:deploy:local\" \"npm run web\" \"npm run bot\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0",
+    "wait-on": "^7.2.0"
+  }
+}
